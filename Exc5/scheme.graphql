@@ -1,0 +1,36 @@
+# Определение основных типов данных
+
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document] # Связанный список документов клиента
+  relatives: [Relative] # Связанный список родственников клиента
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+# Определение корневых запросов
+type Query {
+  # Запрос для получения данных о клиенте
+  client(id: ID!): Client
+
+  # Запрос для получения списка документов клиента
+  clientDocuments(id: ID!): [Document]
+
+  # Запрос для получения списка родственников клиента
+  clientRelatives(id: ID!): [Relative]
+}
